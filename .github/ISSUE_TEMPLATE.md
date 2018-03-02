@@ -1,3 +1,7 @@
+Thanks for raising an issue. :)
+
+Please fill in the relevant details below.
+
 * dask-image version:
 * Python version:
 * Operating System:

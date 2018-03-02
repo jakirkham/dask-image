@@ -1,9 +1,22 @@
-Before you submit a pull request, check that it meets these guidelines:
+Thanks for submitting a PR. :)
 
-1. The pull request should include tests.
-2. If the pull request adds functionality, the docs should be updated. Put
-   your new functionality into a function with a docstring, and add the
-   feature to the list in README.rst.
-3. The pull request should work for Python 2.7, 3.4, 3.5, and 3.6. Check
-   https://travis-ci.org/dask/dask-image/pull_requests
-   and make sure that the tests pass for all supported Python versions.
+Please tells us what your pull request is doing below.
+Also as you work on it, please update the relevant checklists below.
+
+Change is:
+
+- [ ] New feature
+- [ ] Bug fix
+- [ ] Doc update
+- [ ] Maintenance fix (e.g. CI, build, etc.)
+
+General checklist:
+
+- [ ] Includes relevant tests
+- [ ] Tests pass
+- [ ] Passes linter
+
+Feature checklist:
+
+- [ ] Updated docs
+- [ ] Noted in changelog

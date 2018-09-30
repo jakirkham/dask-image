@@ -569,6 +569,47 @@ def minimum_position(input, labels=None, index=None):
     return min_pos_lbl
 
 
+def moment(input, moment, labels=None, index=None):
+    """
+    Find the mean over an image at specified subregions.
+
+    Parameters
+    ----------
+    input : ndarray
+        N-D image data
+    moment : int
+        Order of moment to compute
+    labels : ndarray, optional
+        Image features noted by integers. If None (default), all values.
+    index : int or sequence of ints, optional
+        Labels to include in output.  If None (default), all values where
+        non-zero ``labels`` are used.
+
+        The ``index`` argument only works when ``labels`` is specified.
+
+    Returns
+    -------
+    means : ndarray
+        Mean of ``input`` over the ``index`` selected regions from ``labels``.
+    """
+
+    input, labels, index = _utils._norm_input_labels_index(
+        input, labels, index
+    )
+    moment = int(moment)
+
+    input_sum = sum(input ** moment, labels, index)
+    input_norm = sum(
+        dask.array.ones(input.shape, dtype=input.dtype, chunks=input.chunks),
+        labels,
+        index
+    )
+
+    result = input_sum / input_norm
+
+    return result
+
+
 def standard_deviation(input, labels=None, index=None):
     """
     Find the standard deviation over an image at specified subregions.

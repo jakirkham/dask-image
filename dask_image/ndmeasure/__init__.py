@@ -446,16 +446,7 @@ def mean(input, labels=None, index=None):
         input, labels, index
     )
 
-    input_sum = sum(input, labels, index)
-    input_norm = sum(
-        dask.array.ones(input.shape, dtype=input.dtype, chunks=input.chunks),
-        labels,
-        index
-    )
-
-    com_lbl = input_sum / input_norm
-
-    return com_lbl
+    return moment(input, 1, labels, index)
 
 
 def median(input, labels=None, index=None):
@@ -702,8 +693,8 @@ def variance(input, labels=None, index=None):
         input, labels, index
     )
 
-    input_2_mean = mean(dask.array.square(input), labels, index)
-    input_mean_2 = dask.array.square(mean(input, labels, index))
+    input_2_mean = moment(input, 2, labels, index)
+    input_mean_2 = dask.array.square(moment(input, 1, labels, index))
 
     var_lbl = input_2_mean - input_mean_2
 

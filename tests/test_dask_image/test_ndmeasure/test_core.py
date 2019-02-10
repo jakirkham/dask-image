@@ -197,17 +197,13 @@ def test_find_objects(max_labels):
     n_l = spnd.label(n_msk)[0]
     d_l = da.from_array(n_l, chunks=(5, 5))
 
-    if max_labels == 0:
-        with pytest.raises(NotImplementedError):
-            dask_image.ndmeasure.find_objects(d_l, max_labels)
-    else:
-        n_r = spnd.find_objects(n_l, max_labels)
-        d_r = dask_image.ndmeasure.find_objects(d_l, max_labels).compute()
+    n_r = spnd.find_objects(n_l, max_labels)
+    d_r = dask_image.ndmeasure.find_objects(d_l, max_labels).compute()
 
-        assert len(n_r) == len(d_r)
+    assert len(n_r) == len(d_r)
 
-        for i in irange(len(n_r)):
-            assert n_r[i] == d_r[i]
+    for i in irange(len(n_r)):
+        assert n_r[i] == d_r[i]
 
 
 @pytest.mark.parametrize(
